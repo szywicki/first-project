@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.models.Whisperer;
+import com.example.demo.models.Yeller;
+
 @Controller
 @RequestMapping({"/", "/HelloWorld"})
 public class HelloWorldController {
@@ -24,12 +27,35 @@ public class HelloWorldController {
 	}
 	
 	@GetMapping("message")
-	public ModelAndView message(@RequestParam(required=false, defaultValue="«silence»") String message) {
+	public ModelAndView makeThingsLoud(@RequestParam(required=false, defaultValue="«YELL IN THE LIBRARY!»") String message) {
+		Yeller loudMaker = new Yeller(message);
+		String yellerResult = loudMaker.louder();
+		
 		ModelAndView mv = new ModelAndView("helloworld/message");
 		mv.addObject("title", title);
-		mv.addObject("message", message);
+		mv.addObject("message", yellerResult);
 		return mv;
 	}
+	
+	@GetMapping("whisper")
+	public ModelAndView makeThingsQuiet(@RequestParam(required=false, defaultValue="«shhhhhh»") String message) {
+		Whisperer quietMaker = new Whisperer(message);
+		String whisperResult = quietMaker.quiet();
+		
+		ModelAndView mv = new ModelAndView("helloworld/message");
+		mv.addObject("title", title);
+		mv.addObject("message", whisperResult);
+		return mv;
+	}
+
+		
+	//@GetMapping("message") // URL to which the form submits
+	//public ModelAndView messageParam(@RequestParam(required=false, defaultValue="«silence»") String message) {
+		//ModelAndView mv = new ModelAndView("helloworld/message");
+	//	mv.addObject("title", title);
+	//	mv.addObject("message", message);
+	//	return mv;
+	//}
 	 
 	@PostMapping("adder")
 	public String addTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
