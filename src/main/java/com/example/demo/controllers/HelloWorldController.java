@@ -47,20 +47,5 @@ public class HelloWorldController {
 		mv.addObject("message", whisperResult);
 		return mv;
 	}
-
-		
-	//@GetMapping("message") // URL to which the form submits
-	//public ModelAndView messageParam(@RequestParam(required=false, defaultValue="«silence»") String message) {
-		//ModelAndView mv = new ModelAndView("helloworld/message");
-	//	mv.addObject("title", title);
-	//	mv.addObject("message", message);
-	//	return mv;
-	//}
-	 
-	@PostMapping("adder")
-	public String addTwoNumbers(@RequestParam(name="left") int first, @RequestParam(name="right") double second, Model model) {
-		model.addAttribute("sum", first + second);
-		return "helloworld/sum-result";
-	}
 	
 }
