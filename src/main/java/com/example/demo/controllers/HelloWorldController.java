@@ -48,4 +48,25 @@ public class HelloWorldController {
 		return mv;
 	}
 	
+	@GetMapping("say-something")
+	public String makeAChoice (
+			String message,
+			String speechChoice,
+			Model theThingIPutDataIntoForTheView
+			) {
+	// if speech choice is yell
+	if (speechChoice.equals("yell")) {
+	// then make message loud
+		Yeller aVariableThatHoldsAYellerObject = new Yeller(message);
+		String loud = aVariableThatHoldsAYellerObject.louder();
+		theThingIPutDataIntoForTheView.addAttribute("output", loud);
+	} else {
+		// otherwise
+		// make message quiet
+		Whisperer someQuietThing = new Whisperer (message);
+		String quiet = someQuietThing.quiet();
+		theThingIPutDataIntoForTheView.addAttribute("output", quiet);
+	}
+	return "helloworld/mixed-messages";
+	}
 }
