@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.homeworkCalculator.Adder;
 import com.example.demo.models.homeworkCalculator.Divider;
+import com.example.demo.models.homeworkCalculator.Exponential;
 import com.example.demo.models.homeworkCalculator.ModuloDivider;
 import com.example.demo.models.homeworkCalculator.Multiplier;
 import com.example.demo.models.homeworkCalculator.Subtracter;
@@ -54,20 +55,16 @@ public class Calculator {
 			double modulo = moduloProblem.calculate();
 			theThingIPutDataIntoForTheView.addAttribute("result", modulo);
 		}
+		
+		else if (buttonChoice.equals("exponent")) {
+			Exponential exponentProduct = new Exponential (first, second);
+			double exponent = exponentProduct.calculate();
+			theThingIPutDataIntoForTheView.addAttribute("result", exponent);
+		}
 		return "Calculator/calc-result";
 		
 	}
 	
-//	@GetMapping("adder")
-//	public ModelAndView adder(@RequestParam(name="left") double first) @RequestParam(name="right")double second {
-//		Adder adder = new Adder(first, second);
-//		double result = adder.calculate()
-//				
-//		ModelAndView mv = new ModelAndView ("sum", "Put in your numbers and press a button!");
-//		mv.addObject(attributeValue)
-//		mv.addObject("adder", result)
-//		return mv;
-//	}
 	@GetMapping("")
 	public String showTheCalc() {
 		return "Calculator/calc-home";
