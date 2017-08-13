@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.models.homeworkCalculator;
 
 public class Adder {
 
@@ -6,7 +6,7 @@ public class Adder {
 	// double secret2;
 	private double sum;
 	
-	public Adder(int first, double second) {
+	public Adder(double first, double second) {
 	//	secret1 = first;
 	//	secret2 = second;
 		sum = first + second; 
