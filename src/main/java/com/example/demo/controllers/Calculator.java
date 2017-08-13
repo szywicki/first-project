@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.homeworkCalculator.Adder;
+import com.example.demo.models.homeworkCalculator.Divider;
 import com.example.demo.models.homeworkCalculator.Multiplier;
 import com.example.demo.models.homeworkCalculator.Subtracter;
 
@@ -40,7 +41,14 @@ public class Calculator {
 			double multiplier = multiplicationProblem.calculate();
 			theThingIPutDataIntoForTheView.addAttribute("result", multiplier);
 		}
+		
+		else if (buttonChoice.equals("divide")) {
+			Divider divisionProblem = new Divider (first, second);
+			double divider = divisionProblem.calculate();
+			theThingIPutDataIntoForTheView.addAttribute("result", divider);
+		}
 		return "Calculator/calc-result";
+		
 	}
 	
 //	@GetMapping("adder")
