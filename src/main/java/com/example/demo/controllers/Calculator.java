@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.models.homeworkCalculator.Adder;
 import com.example.demo.models.homeworkCalculator.Divider;
+import com.example.demo.models.homeworkCalculator.ModuloDivider;
 import com.example.demo.models.homeworkCalculator.Multiplier;
 import com.example.demo.models.homeworkCalculator.Subtracter;
 
@@ -46,6 +47,12 @@ public class Calculator {
 			Divider divisionProblem = new Divider (first, second);
 			double divider = divisionProblem.calculate();
 			theThingIPutDataIntoForTheView.addAttribute("result", divider);
+		}
+		
+		else if (buttonChoice.equals("modulo")) {
+			ModuloDivider moduloProblem = new ModuloDivider (first, second);
+			double modulo = moduloProblem.calculate();
+			theThingIPutDataIntoForTheView.addAttribute("result", modulo);
 		}
 		return "Calculator/calc-result";
 		
